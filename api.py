@@ -22,6 +22,7 @@ def createDefect():
     "desc": "'+desc+'"
     } 
     '''
+
         posted_data = request.get_json()
         data = posted_data['data']
         print("Triggered from SNOW ", data)

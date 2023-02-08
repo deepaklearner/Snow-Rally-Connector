@@ -1,26 +1,33 @@
 from pyral import Rally
 import sys
 
-RALLY_NAME = 'rally1.rallydev.com'
-RALLY_API_KEY = '_1iKyJD6XRoakADK4LwWSuDsuW0TtCEJupM7z4xbd85g'
+def create_defect(name, description, state, sstate):
 
-project = 'Project_Test'
-rally = Rally(RALLY_NAME, apikey=RALLY_API_KEY, workspace='Workspace 1', project=project)
+    RALLY_NAME = 'rally1.rallydev.com'
+    RALLY_API_KEY = '_1iKyJD6XRoakADK4LwWSuDsuW0TtCEJupM7z4xbd85g'
 
-proj = rally.getProject()
+    project = 'Project_Test'
+    rally = Rally(RALLY_NAME, apikey=RALLY_API_KEY, workspace='Workspace 1', project=project)
 
-# get the first (and hopefully only) user whose DisplayName is 'Sartorious Submitter'
-user = rally.getUserInfo(name='deepak raushan').pop(0)
+    proj = rally.getProject()
 
-description = "Description 1"
+    # get the first (and hopefully only) user whose DisplayName is 'Sartorious Submitter'
+    user = rally.getUserInfo(name='deepak raushan').pop(0)
 
-defect_data = { "Project" : proj.ref, "SubmittedBy" : user.ref,
-                "Name" : "Title 1",
-                "State" : "Open", "ScheduleState" : "Defined",
-                "Description" : description }
-try:
-    defect = rally.create('Defect', defect_data)
-except Exception as e:
-    print(e)
-    sys.exit(1)
-print("Defect created, ObjectID: %s  FormattedID: %s" % (defect.oid, defect.FormattedID))
+    # Mapping details #
+    # SNOW
+
+    defect_data = { "Project" : proj.ref,
+                    "State" : state,
+                    "ScheduleState" : sstate,
+                    "Name" : name,
+                    "Description" : description}
+
+    try:
+        defect = rally.create('Defect', defect_data)
+    except Exception as e:
+        print(e)
+        sys.exit(1)
+    print("Defect created, ObjectID: %s  FormattedID: %s" % (defect.oid, defect.FormattedID))
+
+create_defect(name="Title 1", description = "Description 1",state = "Open",sstate = "Defined")
