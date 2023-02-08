@@ -12,12 +12,10 @@ proj = rally.getProject()
 # get the first (and hopefully only) user whose DisplayName is 'Sartorious Submitter'
 user = rally.getUserInfo(name='deepak raushan').pop(0)
 
-severity = "Major Problem"
-priority = "Low"
-description = "sample description by Rani"
+description = "Description 1"
 
 defect_data = { "Project" : proj.ref, "SubmittedBy" : user.ref,
-                "Name" : "short desc", "Severity" : severity, "Priority" : priority,
+                "Name" : "Title 1",
                 "State" : "Open", "ScheduleState" : "Defined",
                 "Description" : description }
 try:
