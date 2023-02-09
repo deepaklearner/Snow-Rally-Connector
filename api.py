@@ -5,9 +5,6 @@
 from flask import Flask, jsonify, request
 from create_story import create_rally_defect, mapping_snow_problem_to_rally_defect
 
-from pyral import Rally
-import sys
-
 # initialize our Flask application
 app= Flask(__name__)
 
@@ -23,6 +20,7 @@ def createDefect():
 
         snow_assignmentgrp = data_from_SNOW['assignment_grp']
         snow_problem_number = data_from_SNOW['num']
+
         snow_problem_sh_desc = data_from_SNOW['sh_desc']
         snow_problem_desc = data_from_SNOW['desc']
         snow_problem_state = data_from_SNOW['state']

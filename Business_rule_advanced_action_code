@@ -20,13 +20,15 @@
 		// added by deepak -----start------
 		var assignment_grp = current.assignment_group;
 		var num = current.number;
+		var sys_id = current.sys_id;
+		var defect_correlation_id = current.correlation_id;
 		var sh_desc = current.short_description;
 		var desc = current.description;
 		var state = current.state;
 		var priority = current.priority;
 		var impact = current.impact;
 
-		r.setEndpoint('https://3253-96-230-152-122.ngrok.io/create_defect');
+		r.setEndpoint('https://3513-96-230-152-122.ngrok.io/create_defect');
 		r.setHttpMethod('POST');
 
 		r.setStringParameter('data', current.problem);
@@ -36,8 +38,15 @@
 		r.setRequestHeader("Accept","application/json");
 		r.setRequestHeader('Content-Type','application/json');
 
-		r.setRequestBody('{"short_description":"'+sh_desc+'",' +
-							   '"description":"'+desc+'"}');
+		r.setRequestBody('{"assignment_grp":"'+assignment_grp+'",'+
+							   '"num":"'+num+'",' +
+						       '"sys_id":"'+sys_id+'",' +
+						       '"defect_correlation_id":"'+defect_correlation_id+'",' +
+							   '"sh_desc":"'+sh_desc+'",' +
+							   '"desc":"'+desc+'",' +
+						       '"state":"'+state+'",' +
+						      '"priority":"'+priority+'",' +
+							   '"impact":"'+impact+'"}');
 		// added by deepak -----end------
 
 		 var response = r.execute();
