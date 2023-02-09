@@ -47,7 +47,9 @@ def update_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally
                     "State" : rally_defect_state,
                     "ScheduleState" : rally_defect_sstate,
                     "Name" : rally_defect_title,
-                    "Description" : rally_defect_description}
+                    "Description" : rally_defect_description,
+                    "FormattedID" : defect_correlation_id
+                    }
 
     try:
         defect = rally.update('Defect', defect_data)
@@ -55,11 +57,6 @@ def update_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally
         print(e)
         sys.exit(1)
     print("Defect updated, ObjectID: %s  FormattedID: %s defect_correlation_id: %s" % (defect.oid, defect.FormattedID, defect_correlation_id))
-    if defect_correlation_id != "":
-        print("defect_correlation_id is not empty")
-        defect_correlation_id = defect.FormattedID
-        sync_snow_with_rally_defect_only(problem_sys_id, rally_defect_description, defect.FormattedID,
-                                                         defect_correlation_id)
 
 # Mapping function
 def mapping_snow_problem_to_rally_defect(snow_assignmentgrp,snow_problem_sh_desc,snow_problem_desc,snow_problem_number,
