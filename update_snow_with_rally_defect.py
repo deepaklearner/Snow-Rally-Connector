@@ -14,7 +14,7 @@ def update_snow_with_rally_defect_and_correlation_id(problem_sys_id, description
     # Set proper headers
     headers = {"Content-Type": "application/json", "Accept": "application/json"}
 
-    description_data_with_defect_and_correlation_id = description_data + "  " + defect_num + "  " + correlation_id
+    description_data_with_defect_and_correlation_id = description_data + "  " + defect_num
 
     # Do the HTTP request
     response = requests.put(url, auth=(user, pwd), headers=headers,
