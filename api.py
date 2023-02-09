@@ -14,14 +14,14 @@ def index():
 @app.route("/create_defect", methods=["POST"])
 def createDefect():
     if request.method == 'POST':
-    '''
-    lets create json data from SNOW
-    {
-    "problem_num":"'+num+'",
-    "sh_desc": "'+sh_desc+'"
-    "desc": "'+desc+'"
-    } 
-    '''
+        '''
+            lets create json data from SNOW
+            {
+            "problem_num":"'+num+'",
+            "sh_desc": "'+sh_desc+'"
+            "desc": "'+desc+'"
+            } 
+        '''
 
         posted_data = request.get_json()
         data = posted_data['data']
