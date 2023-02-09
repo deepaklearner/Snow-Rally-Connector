@@ -1,6 +1,6 @@
 from pyral import Rally
 import sys
-from update_snow_with_rally_defect import update_snow_with_rally_defect
+from update_snow_with_rally_defect import update_snow_with_rally_defect_and_correlation_id, update_snow_with_rally_defect_only
 
 def create_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate, defect_correlation_id):
 
@@ -29,7 +29,10 @@ def create_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally
     if defect_correlation_id == "":
         print("I am here")
         defect_correlation_id = defect.FormattedID
-        update_snow_with_rally_defect(problem_sys_id, rally_defect_description, defect.FormattedID, defect_correlation_id)
+        update_snow_with_rally_defect_and_correlation_id(problem_sys_id, rally_defect_description, defect.FormattedID, defect_correlation_id)
+        update_snow_with_rally_defect_only(problem_sys_id, rally_defect_description, defect.FormattedID,
+                                                         defect_correlation_id)
+
 
 # Mapping function
 def mapping_snow_problem_to_rally_defect(snow_assignmentgrp,snow_problem_sh_desc,snow_problem_desc,snow_problem_number,
