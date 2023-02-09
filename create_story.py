@@ -1,12 +1,12 @@
 from pyral import Rally
 import sys
 
-def create_defect(project, name, description, state, sstate):
+def create_defect(rally_project, rally_title, rally_description, rally_state, rally_sstate):
 
     RALLY_NAME = 'rally1.rallydev.com'
     RALLY_API_KEY = '_1iKyJD6XRoakADK4LwWSuDsuW0TtCEJupM7z4xbd85g'
 
-    rally = Rally(RALLY_NAME, apikey=RALLY_API_KEY, workspace='Workspace 1', project=project)
+    rally = Rally(RALLY_NAME, apikey=RALLY_API_KEY, workspace='Workspace 1', project=rally_project)
 
     proj = rally.getProject()
 
@@ -17,10 +17,10 @@ def create_defect(project, name, description, state, sstate):
     # SNOW
 
     defect_data = { "Project" : proj.ref,
-                    "State" : state,
-                    "ScheduleState" : sstate,
-                    "Name" : name,
-                    "Description" : description}
+                    "State" : rally_state,
+                    "ScheduleState" : rally_sstate,
+                    "Name" : rally_title,
+                    "Description" : rally_description}
 
     try:
         defect = rally.create('Defect', defect_data)
@@ -29,4 +29,4 @@ def create_defect(project, name, description, state, sstate):
         sys.exit(1)
     print("Defect created, ObjectID: %s  FormattedID: %s" % (defect.oid, defect.FormattedID))
 
-create_defect(project = 'Project_Test', name="Title 1", description = "Description 1", state = "Open",sstate = "Defined")
+create_defect(rally_project = 'Project_Test', rally__title="Title 1", rally_description = "Description 1", rally_state = "Open",rally_sstate = "Defined")
