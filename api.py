@@ -20,7 +20,8 @@ def createDefect():
 
         snow_assignmentgrp = data_from_SNOW['assignment_grp']
         snow_problem_number = data_from_SNOW['num']
-
+        problem_sys_id = data_from_SNOW['sys_id']
+        defect_correlation_id = data_from_SNOW['defect_correlation_id']
         snow_problem_sh_desc = data_from_SNOW['sh_desc']
         snow_problem_desc = data_from_SNOW['desc']
         snow_problem_state = data_from_SNOW['state']
@@ -32,8 +33,8 @@ def createDefect():
                                                  snow_problem_number, snow_problem_state, snow_problem_priority,
                                                  snow_problem_impact)
 
-        create_rally_defect(rally_project, rally_defect_title, rally_defect_description, rally_defect_state,
-                            rally_defect_sstate)
+        create_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description, rally_defect_state,
+                            rally_defect_sstate, defect_correlation_id)
 
         return jsonify(str("Successfully created Defect in Rally"))
 

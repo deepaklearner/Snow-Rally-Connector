@@ -1,10 +1,11 @@
-def update_rally_defect(description_data,defect_num,correlation_id):
+def update_snow_with_rally_defect(problem_sys_id,description_data,defect_num,correlation_id):
     # Need to install requests package for python
     # easy_install requests
     import requests
 
     # Set the request parameters
-    url = 'https://dev97102.service-now.com/api/now/table/problem/f10ea5a607b02110f1c9f1d08c1ed09f'
+    # url = 'https://dev97102.service-now.com/api/now/table/problem/f10ea5a607b02110f1c9f1d08c1ed09f'
+    url   = "https://dev97102.service-now.com/api/now/table/problem/" + problem_sys_id
 
     # Eg. User name="admin", Password="admin" for this code sample.
     user = 'admin'
