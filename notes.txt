@@ -4,3 +4,5 @@ Problem: PRB0040001
 Business rule: send_data_to_rally
 
 userid: draushan2
+
+command to run flask app: python api.py
