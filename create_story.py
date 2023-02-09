@@ -27,8 +27,14 @@ def create_defect(rally_project, rally_defect_title, rally_defect_description, r
     print("Defect created, ObjectID: %s  FormattedID: %s" % (defect.oid, defect.FormattedID))
 
 # Mapping details
-snow_assignmentgrp = "DEEPAK-PROD-SUPPORT"
-snow_problem_sh_desc =
+snow_assignmentgrp = "DEEPAK-PROD-SUPPORT" #rally_project, rally_defect_tower, rally_defect_team, rally_defect_lead
+snow_problem_sh_desc = "Test problem updated 1" #rally_defect_title
+snow_problem_desc = "Test problem updated 1" #rally_defect_description
+snow_problem_state = "New" #rally_defect_state
+snow_problem_priority = "5" #rally_defect_priority
+snow_problem_impact = "3" #rally_defect_severity
+snow_problem_work_notes = "sample work notes" #rally_defect_discussion
+#snow_defect_attachment - to do later
 
 create_defect(rally_project = 'Project_Test', rally_defect_title="Title 1", rally_defect_description = "Description 1",
               rally_defect_state = "Open",rally_defect_sstate = "Defined")
