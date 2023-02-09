@@ -27,13 +27,14 @@ def create_rally_defect(rally_project, rally_defect_title, rally_defect_descript
     print("Defect created, ObjectID: %s  FormattedID: %s" % (defect.oid, defect.FormattedID))
 
 # Mapping function
-def mapping_snow_problem_to_rally_defect(snow_assignmentgrp,snow_problem_sh_desc,snow_problem_desc,snow_problem_state,snow_problem_priority,snow_problem_impact):
+def mapping_snow_problem_to_rally_defect(snow_assignmentgrp,snow_problem_sh_desc,snow_problem_desc,snow_problem_number,
+                                         snow_problem_state,snow_problem_priority,snow_problem_impact):
 
-    if snow_assignmentgrp == "DEEPAK-PROD-SUPPORT":
+    if snow_assignmentgrp == "58c229ea07702110f1c9f1d08c1ed0f7": #DEEPAK-PROD-SUPPORT
         rally_project = 'Project_Test' #rally_project, rally_defect_tower, rally_defect_team, rally_defect_lead
         rally_defect_title = snow_problem_sh_desc
         rally_defect_description = snow_problem_desc + " " + snow_problem_number
-    if snow_problem_state == "New":
+    if snow_problem_state == "103": #Root cause Analysis
         rally_defect_state = "Open"
         rally_defect_sstate = "Defined"
     if snow_problem_priority == "5": rally_defect_priority ="Normal"
@@ -43,15 +44,15 @@ def mapping_snow_problem_to_rally_defect(snow_assignmentgrp,snow_problem_sh_desc
     return rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate
 
 # Test data
-snow_assignmentgrp = "DEEPAK-PROD-SUPPORT"
-snow_problem_number = "PRB0040001"
-snow_problem_sh_desc = "Test problem updated 1"
-snow_problem_desc = "Test problem updated 1"
-snow_problem_state = "New"
-snow_problem_priority = "5"
-snow_problem_impact = "3"
-
-rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate = \
-    mapping_snow_problem_to_rally_defect(snow_assignmentgrp,snow_problem_sh_desc,snow_problem_desc,snow_problem_state,snow_problem_priority,snow_problem_impact)
-
-create_rally_defect(rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate)
+# snow_assignmentgrp = "DEEPAK-PROD-SUPPORT"
+# snow_problem_number = "PRB0040001"
+# snow_problem_sh_desc = "Test problem updated 1"
+# snow_problem_desc = "Test problem updated 1"
+# snow_problem_state = "New"
+# snow_problem_priority = "5"
+# snow_problem_impact = "3"
+#
+# rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate = \
+#     mapping_snow_problem_to_rally_defect(snow_assignmentgrp,snow_problem_sh_desc,snow_problem_desc,snow_problem_number,snow_problem_state,snow_problem_priority,snow_problem_impact)
+#
+# create_rally_defect(rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate)
