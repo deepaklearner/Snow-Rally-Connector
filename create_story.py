@@ -33,6 +33,36 @@ def create_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally
         update_snow_with_rally_defect_only(problem_sys_id, rally_defect_description, defect.FormattedID,
                                                          defect_correlation_id)
 
+def update_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate, defect_correlation_id):
+
+    RALLY_NAME = 'rally1.rallydev.com'
+    RALLY_API_KEY = '_1iKyJD6XRoakADK4LwWSuDsuW0TtCEJupM7z4xbd85g'
+
+    rally = Rally(RALLY_NAME, apikey=RALLY_API_KEY, workspace='Workspace 1', project=rally_project)
+
+    proj = rally.getProject()
+
+    # get the first (and hopefully only) user whose DisplayName is 'Sartorious Submitter'
+    user = rally.getUserInfo(name='deepak raushan').pop(0)
+
+    defect_data = { "Project" : proj.ref,
+                    "State" : rally_defect_state,
+                    "ScheduleState" : rally_defect_sstate,
+                    "Name" : rally_defect_title,
+                    "Description" : rally_defect_description}
+
+    try:
+        defect = rally.update('Defect', defect_data)
+    except Exception as e:
+        print(e)
+        sys.exit(1)
+    print("Defect updated, ObjectID: %s  FormattedID: %s defect_correlation_id: %s" % (defect.oid, defect.FormattedID, defect_correlation_id))
+    if defect_correlation_id == "":
+        print("I am here")
+        defect_correlation_id = defect.FormattedID
+        update_snow_with_rally_defect_and_correlation_id(problem_sys_id, rally_defect_description, defect.FormattedID, defect_correlation_id)
+        update_snow_with_rally_defect_only(problem_sys_id, rally_defect_description, defect.FormattedID,
+                                                         defect_correlation_id)
 
 # Mapping function
 def mapping_snow_problem_to_rally_defect(snow_assignmentgrp,snow_problem_sh_desc,snow_problem_desc,snow_problem_number,

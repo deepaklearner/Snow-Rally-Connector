@@ -32,8 +32,12 @@ def createDefect():
             mapping_snow_problem_to_rally_defect(snow_assignmentgrp, snow_problem_sh_desc, snow_problem_desc,
                                                  snow_problem_number, snow_problem_state, snow_problem_priority,
                                                  snow_problem_impact)
-
-        create_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description, rally_defect_state,
+        if defect_correlation_id == "":
+            create_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description, rally_defect_state,
+                            rally_defect_sstate, defect_correlation_id)
+        else:
+            update_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description,
+                            rally_defect_state,
                             rally_defect_sstate, defect_correlation_id)
 
         return jsonify(str("Successfully created Defect in Rally"))
