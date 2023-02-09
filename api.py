@@ -3,7 +3,7 @@
 # python api.py
 
 from flask import Flask, jsonify, request
-from create_story import create_rally_defect, mapping_snow_problem_to_rally_defect
+from create_story import create_rally_defect, update_rally_defect, mapping_snow_problem_to_rally_defect
 
 # initialize our Flask application
 app= Flask(__name__)
@@ -35,12 +35,13 @@ def createDefect():
         if defect_correlation_id == "":
             create_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description, rally_defect_state,
                             rally_defect_sstate, defect_correlation_id)
+            return jsonify(str("Successfully created Defect in Rally"))
         else:
             update_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description,
                             rally_defect_state,
                             rally_defect_sstate, defect_correlation_id)
 
-        return jsonify(str("Successfully created Defect in Rally"))
+            return jsonify(str("Successfully updated Defect in Rally"))
 
 @app.route("/name", methods=["POST"])
 def setName():

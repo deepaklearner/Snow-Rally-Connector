@@ -1,6 +1,6 @@
 from pyral import Rally
 import sys
-from update_snow_with_rally_defect import update_snow_with_rally_defect_and_correlation_id, update_snow_with_rally_defect_only
+from update_snow_with_rally_defect import update_snow_with_rally_defect_and_correlation_id, sync_snow_with_rally_defect_only
 
 def create_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate, defect_correlation_id):
 
@@ -27,11 +27,9 @@ def create_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally
         sys.exit(1)
     print("Defect created, ObjectID: %s  FormattedID: %s defect_correlation_id: %s" % (defect.oid, defect.FormattedID, defect_correlation_id))
     if defect_correlation_id == "":
-        print("I am here")
+        print("defect_correlation_id is empty")
         defect_correlation_id = defect.FormattedID
         update_snow_with_rally_defect_and_correlation_id(problem_sys_id, rally_defect_description, defect.FormattedID, defect_correlation_id)
-        update_snow_with_rally_defect_only(problem_sys_id, rally_defect_description, defect.FormattedID,
-                                                         defect_correlation_id)
 
 def update_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate, defect_correlation_id):
 
@@ -57,11 +55,10 @@ def update_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally
         print(e)
         sys.exit(1)
     print("Defect updated, ObjectID: %s  FormattedID: %s defect_correlation_id: %s" % (defect.oid, defect.FormattedID, defect_correlation_id))
-    if defect_correlation_id == "":
-        print("I am here")
+    if defect_correlation_id != "":
+        print("defect_correlation_id is not empty")
         defect_correlation_id = defect.FormattedID
-        update_snow_with_rally_defect_and_correlation_id(problem_sys_id, rally_defect_description, defect.FormattedID, defect_correlation_id)
-        update_snow_with_rally_defect_only(problem_sys_id, rally_defect_description, defect.FormattedID,
+        sync_snow_with_rally_defect_only(problem_sys_id, rally_defect_description, defect.FormattedID,
                                                          defect_correlation_id)
 
 # Mapping function
