@@ -26,15 +26,31 @@ def create_defect(rally_project, rally_defect_title, rally_defect_description, r
         sys.exit(1)
     print("Defect created, ObjectID: %s  FormattedID: %s" % (defect.oid, defect.FormattedID))
 
-# Mapping details
-snow_assignmentgrp = "DEEPAK-PROD-SUPPORT" #rally_project, rally_defect_tower, rally_defect_team, rally_defect_lead
-snow_problem_sh_desc = "Test problem updated 1" #rally_defect_title
-snow_problem_desc = "Test problem updated 1" #rally_defect_description
-snow_problem_state = "New" #rally_defect_state
-snow_problem_priority = "5" #rally_defect_priority
-snow_problem_impact = "3" #rally_defect_severity
-snow_problem_work_notes = "sample work notes" #rally_defect_discussion
-#snow_defect_attachment - to do later
+# Mapping function
+def mapping_snow_problem_to_rally_defect(snow_assignmentgrp,snow_problem_sh_desc,snow_problem_desc,snow_problem_state,snow_problem_priority,snow_problem_impact):
 
-create_defect(rally_project = 'Project_Test', rally_defect_title="Title 1", rally_defect_description = "Description 1",
-              rally_defect_state = "Open",rally_defect_sstate = "Defined")
+    if snow_assignmentgrp == "DEEPAK-PROD-SUPPORT":
+        rally_project = 'Project_Test' #rally_project, rally_defect_tower, rally_defect_team, rally_defect_lead
+        rally_defect_title = snow_problem_sh_desc
+        rally_defect_description = snow_problem_desc
+    if snow_problem_state == "New":
+        rally_defect_state = "Open"
+        rally_defect_sstate = "Defined"
+    if snow_problem_priority == "5": rally_defect_priority ="Normal"
+    if snow_problem_impact == "3": rally_defect_severity="Major Problem"
+    #snow_problem_work_notes = "sample work notes" #rally_defect_discussion
+    #snow_defect_attachment - to do later
+    return rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate
+
+# Test data
+snow_assignmentgrp = "DEEPAK-PROD-SUPPORT"
+snow_problem_sh_desc = "Test problem updated 1"
+snow_problem_desc = "Test problem updated 1"
+snow_problem_state = "New"
+snow_problem_priority = "5"
+snow_problem_impact = "3"
+
+rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate = \
+    mapping_snow_problem_to_rally_defect(snow_assignmentgrp,snow_problem_sh_desc,snow_problem_desc,snow_problem_state,snow_problem_priority,snow_problem_impact)
+
+create_defect(rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate)
