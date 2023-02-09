@@ -3,7 +3,7 @@
 # python api.py
 
 from flask import Flask, jsonify, request
-from create_story import create_rally_defect, update_rally_defect, mapping_snow_problem_to_rally_defect
+from rally_library import create_rally_defect, update_rally_defect, mapping_snow_problem_to_rally_defect
 
 # initialize our Flask application
 app= Flask(__name__)

@@ -46,7 +46,7 @@ def sync_snow_with_rally_defect_only(problem_sys_id,description_data,defect_num,
     # Set proper headers
     headers = {"Content-Type": "application/json", "Accept": "application/json"}
 
-    description_data_with_defect = description_data + "\n\n" + defect_num
+    description_data_with_defect = description_data + " " + defect_num
 
     # Do the HTTP request
     response = requests.put(url, auth=(user, pwd), headers=headers,
