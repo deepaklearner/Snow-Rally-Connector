@@ -18,9 +18,14 @@
 		//r.setEccParameter('skip_sensor', true);
 
 		// added by deepak -----start------
+		var assignment_grp = current.assignment_group;
 		var num = current.number;
 		var sh_desc = current.short_description;
 		var desc = current.description;
+		var state = current.state;
+		var priority = current.priority;
+		var impact = current.impact;
+
 		r.setEndpoint('https://9dcf-96-230-152-122.ngrok.io/name');
 		r.setHttpMethod('POST');
 
@@ -30,7 +35,18 @@
 
 		r.setRequestHeader("Accept","application/json");
 		r.setRequestHeader('Content-Type','application/json');
-		r.setRequestBody('{"data":"'+num+'"}');
+
+		r.setRequestBody(      '{"assignment_grp" : "'+assignment_grp+'"    ,' +
+							   '{"num"            : "'+num+'"              ,' +
+							   '{"sh_desc"        : "'+sh_desc+'"              ,' +
+							   '{"desc"           : "'+desc+'"      ,' +
+						       '{"state"           : "'+state+'"      ,' +
+						      '{"priority"           : "'+priority+'"      ,' +
+
+							   '"impact"        : "'+impact+'"        }'
+
+
+						);
 		// added by deepak -----end------
 
 		 var response = r.execute();
