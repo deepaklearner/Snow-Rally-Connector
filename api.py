@@ -3,7 +3,7 @@
 # python api.py
 
 from flask import Flask, jsonify, request
-from rally_library import create_rally_defect, update_rally_defect, mapping_snow_problem_to_rally_defect
+from rally_library import create_rally_defect, update_rally_defect, mapping_snow_problem_to_rally_defect_first_time, mapping_snow_problem_to_rally_defect_next_time
 
 # initialize our Flask application
 app= Flask(__name__)
@@ -28,15 +28,21 @@ def createDefect():
         snow_problem_priority = data_from_SNOW['priority']
         snow_problem_impact = data_from_SNOW['impact']
 
-        rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate = \
-            mapping_snow_problem_to_rally_defect(snow_assignmentgrp, snow_problem_sh_desc, snow_problem_desc,
-                                                 snow_problem_number, snow_problem_state, snow_problem_priority,
-                                                 snow_problem_impact)
         if defect_correlation_id == "":
+            rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate = \
+                mapping_snow_problem_to_rally_defect_first_time(snow_assignmentgrp, snow_problem_sh_desc, snow_problem_desc,
+                                                     snow_problem_number, snow_problem_state, snow_problem_priority,
+                                                     snow_problem_impact)
+
             create_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description, rally_defect_state,
                             rally_defect_sstate, defect_correlation_id)
             return jsonify(str("Successfully created Defect in Rally"))
         else:
+            rally_project, rally_defect_title, rally_defect_description, rally_defect_state, rally_defect_sstate = \
+                mapping_snow_problem_to_rally_defect_next_time(snow_assignmentgrp, snow_problem_sh_desc, snow_problem_desc,
+                                                     snow_problem_number, snow_problem_state, snow_problem_priority,
+                                                     snow_problem_impact)
+
             update_rally_defect(rally_project, problem_sys_id, rally_defect_title, rally_defect_description,
                             rally_defect_state,
                             rally_defect_sstate, defect_correlation_id)
