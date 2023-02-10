@@ -65,7 +65,7 @@ def mapping_snow_problem_to_rally_defect_first_time(snow_assignmentgrp,snow_prob
     if snow_assignmentgrp == "58c229ea07702110f1c9f1d08c1ed0f7": #DEEPAK-PROD-SUPPORT
         rally_project = 'Project_Test' #rally_project, rally_defect_tower, rally_defect_team, rally_defect_lead
         rally_defect_title = snow_problem_sh_desc
-        rally_defect_description = snow_problem_desc + snow_problem_number
+        rally_defect_description = snow_problem_desc + " " + snow_problem_number
     if (snow_problem_state == "103" or snow_problem_state == "102"): #Root cause Analysis 103 - New:102
         rally_defect_state = "Open"
         rally_defect_sstate = "Defined"
