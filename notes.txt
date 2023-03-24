@@ -5,7 +5,7 @@ Business rule: send_data_to_rally
 
 Add access to user: Problem manager
 1. Add the id of assignment gorup in Rally api code
-2. If the Business rule is not hitting the end point, then try creating the Outbound REST and use the same name in script in next step
+2. Test the end point from the Outbound REST and then use the same script in Business Rule "Advanced" section (ensure just name is same).
 3. Update the url of servicenow instance in function update_snow_with_rally_defect_and_correlation_id and sync_snow_with_rally_defect_only
 
 userid: draushan2
