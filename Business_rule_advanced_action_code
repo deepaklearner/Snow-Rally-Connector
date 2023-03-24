@@ -3,7 +3,7 @@
 	// Add your code here
 
 	try {
-		 var r = new sn_ws.RESTMessageV2('REST_OUTBOUND_DEEPAK', 'post');
+		 var r = new sn_ws.RESTMessageV2('REST_OUTBOUND_DEEPAK', 'POST');
 
 		//override authentication profile
 		//authentication type ='basic'/ 'oauth2'
