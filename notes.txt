@@ -3,6 +3,9 @@ Incident: INC0010001
 Problem: PRB0040001
 Business rule: send_data_to_rally
 
+Add access to user: Problem manager
+Add the id of assignment gorup in Rally api code
+
 userid: draushan2
 
 command to run flask app: python api.py
