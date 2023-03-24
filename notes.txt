@@ -4,7 +4,8 @@ Problem: PRB0040001
 Business rule: send_data_to_rally
 
 Add access to user: Problem manager
-Add the id of assignment gorup in Rally api code
+1. Add the id of assignment gorup in Rally api code
+2. Update the url of servicenow instance in function update_snow_with_rally_defect_and_correlation_id
 
 userid: draushan2
 
